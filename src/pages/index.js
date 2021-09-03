@@ -1,9 +1,31 @@
-import * as React from "react"
+import * as React from 'react';
+import { Client } from '@notionhq/client';
 
-import Layout from "../components/layout"
+const notion = new Client({ auth: 'Secret_EF3gQEg7xh9FejTTZuzJrWfwPk5kfMM2XmpUvu3Tnze' });
 
-const IndexPage = () => (
-  <Layout><h1>A Movie a minute</h1></Layout>
-)
+const IndexPage = () => {
+	React.useEffect(async () => {
+		const response = await notion.pages.create({
+			parent: { database_id: 'c6de34cdadb34feebc7d1b7602014ad6' },
+			properties: {
+				title: {
+					title: [
+						{
+							text: {
+								content: 'hellllooooo',
+							},
+						},
+					],
+				},
+			},
+		});
 
-export default IndexPage
+		console.log(response);
+	});
+
+	return <h1>A movie a minute</h1>;
+};
+
+export default IndexPage;
+// Secret_EF3gQEg7xh9FejTTZuzJrWfwPk5kfMM2XmpUvu3Tnze
+// c6de34cdadb34feebc7d1b7602014ad6
