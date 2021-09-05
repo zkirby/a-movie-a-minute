@@ -6,14 +6,18 @@ import Loading from '../shared/api/Loading';
 import { getAllPostSummaries } from './posts.api';
 import PostSummary from './PostSummary';
 
+import './posts.scss';
+
 const AllPosts = () => {
 	const [summaries, status] = useAsyncLoadState(getAllPostSummaries, []);
 
 	return (
 		<Loading status={status}>
-			{map(summaries, post =>
-				<PostSummary post={post}/>,
-			)}
+			<div className="all-posts">
+				{map(summaries, post =>
+					<PostSummary key={post.id} post={post}/>,
+				)}
+			</div>
 		</Loading>
 	);
 };

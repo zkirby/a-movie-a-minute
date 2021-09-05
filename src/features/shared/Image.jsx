@@ -1,7 +1,10 @@
+import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 
 const Image = ({ src, alt, className = '' }) => (
-	<img className={className} src={src} alt={alt} />
+	<object className={className} data={src} type="image/png">
+		<StaticImage src={'../../assets/images/default.jpeg'} alt={alt} />
+	</object>
 );
 
 export default Image;
