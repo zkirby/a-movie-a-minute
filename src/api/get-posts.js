@@ -10,7 +10,6 @@ const transFormApiPosts = apiPosts => compact(map(apiPosts, post => ({
 })));
 
 export default async function handler(req, res) {
-	let posts;
 	try {
 		const response = await notion.databases.query({
 			database_id: DATABASE_IDS.BLOGS,
@@ -27,11 +26,10 @@ export default async function handler(req, res) {
 				},
 			],
 		});
-		posts = transFormApiPosts(response.results);
-	} catch (error) {
-		res.status(500).json({ error });
-	}
 
-	res.status(200).json(posts);
+		return res.status(200).json(transFormApiPosts(response.results));
+	} catch (error) {
+		return res.status(500).json({ error });
+	}
 }
 

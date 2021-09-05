@@ -11,7 +11,11 @@ const AllPosts = () => {
 
 	return (
 		<Loading status={status}>
-			{map(summaries, post => <NavLink key={post.id} to="/entry" params={{ postId: post.id }}>{post.title}</NavLink>)}
+			{map(summaries, post =>
+				<NavLink key={post.id} to="/entry" params={{ postId: post.id }}>
+					{post.title}
+				</NavLink>,
+			)}
 		</Loading>
 	);
 };

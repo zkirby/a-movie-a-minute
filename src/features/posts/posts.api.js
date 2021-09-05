@@ -5,5 +5,5 @@ export function getAllPostSummaries() {
 }
 
 export function getPost(postId) {
-	return api.get('/api/get-post', { searchParams: { postId } });
+	return api.get('/api/get-post', { searchParams: { postId } }).json();
 }

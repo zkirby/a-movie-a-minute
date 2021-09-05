@@ -1,17 +1,30 @@
 
-import { get } from 'lodash';
+import { get, map, pick } from 'lodash';
+
 import notion from '../features/shared/api/notionClient';
 
-export default async function handler(req, res) {
-	let post;
-	try {
-		post = await notion.pages.retrieve({ page_id: req.query.postId });
-		const content = await notion.blocks.children.list({ block_id: req.query.postId });
-		post.content = get(content, 'results');
-	} catch (error) {
-		res.status(500).json({ error });
-	}
+function transformApiPostContent(content) {
+	return map(content, block => {
+		const text = get(block, [block.type, 'text', '0'], {});
+		return {
+			...pick(block, ['id', 'type']),
+			...(text.annotations || {}),
+			text: text.plain_text,
+		};
+	});
+}
 
-	res.status(200).json(post);
+export default async function handler(req, res) {
+	try {
+		const [post, content] = await Promise.all([
+			notion.pages.retrieve({ page_id: req.query.postId }),
+			await notion.blocks.children.list({ block_id: req.query.postId }),
+		]);
+
+		post.content = transformApiPostContent(get(content, 'results'));
+		return res.status(200).json(post);
+	} catch (_) {
+		return res.status(500).json();
+	}
 }
 
