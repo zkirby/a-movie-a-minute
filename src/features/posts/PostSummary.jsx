@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Image from '../shared/Image';
 import NavLink from '../shared/NavLink';
 
 import './posts.scss';
@@ -7,7 +8,7 @@ import './posts.scss';
 const PostSummary = ({ post }) => (
 	<NavLink className="clear-style" key={post.id} to="/entry" params={{ postId: post.id }}>
 		<div className="post-summary">
-			<div className="fake-image" />
+			<Image className="image" src={post.img} alt={post.title} />
 			<div className="title">{post.title}</div>
 		</div>
 	</NavLink>

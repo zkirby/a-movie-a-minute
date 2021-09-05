@@ -7,6 +7,7 @@ import { compact, map, pick, get } from 'lodash';
 const transFormApiPosts = apiPosts => compact(map(apiPosts, post => ({
 	...pick(post, ['id', 'created_time', 'last_edited_time']),
 	title: get(post, 'properties.Title.title[0].plain_text'),
+	img: get(post, 'properties.Image.url'),
 })));
 
 export default async function handler(req, res) {
