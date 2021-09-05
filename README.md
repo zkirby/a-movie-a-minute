@@ -1,4 +1,4 @@
 # A Movie A Minute
 
-Home grown movie blog
+Home grown movie blog. 
 
