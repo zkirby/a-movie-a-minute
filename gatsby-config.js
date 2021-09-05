@@ -9,6 +9,7 @@ module.exports = {
 		author: '@zkirby',
 	},
 	plugins: [
+		'gatsby-plugin-use-query-params',
 		'gatsby-plugin-sass',
 		'gatsby-plugin-image',
 		'gatsby-transformer-sharp',
