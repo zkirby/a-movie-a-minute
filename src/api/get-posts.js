@@ -1,17 +1,16 @@
-import { Client } from '@notionhq/client';
 
-const notion = new Client({ auth: 'secret_EF3gQEg7xh9FejTTZuzJrWfwPk5kfMM2XmpUvu3Tnze' });
-const databaseId = 'c6de34cdadb34feebc7d1b7602014ad6';
+import notion from '../features/shared/api/notionClient';
+import { DATABASE_IDS } from '../features/shared/api/api.constants';
 
 export default async function handler(req, res) {
-	let page;
+	let posts;
 	try {
-		page = await notion.databases.query({
-			database_id: databaseId,
+		const response = await notion.databases.query({
+			database_id: DATABASE_IDS.BLOGS,
 			filter: {
-				property: 'Tags',
-				multi_select: {
-					contains: 'published',
+				property: 'Status',
+				select: {
+					equals: 'published',
 				},
 			},
 			sorts: [
@@ -21,10 +20,11 @@ export default async function handler(req, res) {
 				},
 			],
 		});
-	} catch (e) {
-		res.status(500).json({ page: e });
+		posts = response.results;
+	} catch (error) {
+		res.status(500).json({ error });
 	}
 
-	res.status(200).json({ page });
+	res.status(200).json(posts);
 }
 
