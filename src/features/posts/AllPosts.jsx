@@ -3,8 +3,8 @@ import { map } from 'lodash';
 
 import useAsyncLoadState from '../shared/api/useAsyncLoadState';
 import Loading from '../shared/api/Loading';
-import NavLink from '../shared/NavLink';
 import { getAllPostSummaries } from './posts.api';
+import PostSummary from './PostSummary';
 
 const AllPosts = () => {
 	const [summaries, status] = useAsyncLoadState(getAllPostSummaries, []);
@@ -12,9 +12,7 @@ const AllPosts = () => {
 	return (
 		<Loading status={status}>
 			{map(summaries, post =>
-				<NavLink key={post.id} to="/entry" params={{ postId: post.id }}>
-					{post.title}
-				</NavLink>,
+				<PostSummary post={post}/>,
 			)}
 		</Loading>
 	);

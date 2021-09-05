@@ -1,0 +1,22 @@
+.clear-style {
+    text-decoration: none;
+}
+
+.post-summary {
+    height: 140px;
+    width: 100px;
+    border: 1px solid black;
+
+    .fake-image {
+        height: 100px;
+        border-bottom: 2px solid black;
+    }
+
+    .title {
+        margin-top: 0.3rem;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        color: black;
+    }
+}
