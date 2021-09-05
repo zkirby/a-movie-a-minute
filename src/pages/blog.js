@@ -4,7 +4,7 @@ import ky from 'ky';
 const IndexPage = () => {
 	const [posts, setPosts] = useState([]);
 	useEffect(async () => {
-		const posts = await ky.get('/api/create-page').json();
+		const posts = await ky.get('/api/get-posts').json();
 		setPosts(posts?.page?.results);
 	}, []);
 
