@@ -9,7 +9,14 @@ const PostSummary = ({ post }) => (
   <NavLink className="clear-style" to="/entry" params={{ postId: post.id }}>
     <div className="post-summary">
       <Image className="image" src={post.img} alt={post.title} />
-      <div className="title">{post.title}</div>
+      <div>
+        <div className="title">
+          <div>{post.title}</div>
+          <div>
+            ({post.year}) {post.rating}/32
+          </div>
+        </div>
+      </div>
     </div>
   </NavLink>
 )

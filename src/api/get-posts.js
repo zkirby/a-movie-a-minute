@@ -3,14 +3,18 @@ import { DATABASE_IDS } from "../features/shared/api/api.constants"
 import { compact, map, pick, get } from "lodash"
 
 // Convert the api posts to something more understandable
-const transFormApiPosts = apiPosts =>
-  compact(
-    map(apiPosts, post => ({
-      ...pick(post, ["id", "created_time", "last_edited_time"]),
-      title: get(post, "properties.Title.title[0].plain_text"),
-      img: get(post, "properties.Image.url"),
-    }))
-  )
+export const transFormApiPost = post => {
+  const getProp = accessor => get(post, `properties.${accessor}`)
+  return {
+    ...pick(post, ["id", "created_time", "last_edited_time", "properties"]),
+    title: getProp("Title.title[0].plain_text"),
+    year: getProp("Year.rich_text[0].plain_text"),
+    rating: getProp("Personally.number"),
+    img: getProp("Image.url"),
+  }
+}
+
+const transFormApiPosts = apiPosts => compact(map(apiPosts, transFormApiPost))
 
 export default async function handler(req, res) {
   try {
@@ -24,8 +28,8 @@ export default async function handler(req, res) {
       },
       sorts: [
         {
-          property: "Created",
-          direction: "ascending",
+          property: "Personally",
+          direction: "descending",
         },
       ],
     })

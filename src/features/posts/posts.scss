@@ -3,7 +3,7 @@
 }
 
 .post-summary {
-    height: 310px;
+    height: 320px;
     width: 158px;
     color: black;
     border: 1px solid black;
@@ -18,8 +18,16 @@
     .title {
         margin-top: 0.3rem;
         text-align: center;
-        font-weight: bold;
-        text-decoration: none;
+
+        div:first-child {
+            font-weight: bold;
+        }
+    }
+
+    .sub-title {
+        display: flex;
+        justify-content: space-between;
+        margin: 0.5rem;
     }
 
     &:hover {
@@ -31,3 +39,13 @@
 .all-posts {
     display: flex;
 }
+
+// -------
+// Posts
+.post-body {
+    margin: 0 auto;
+    width: 55vw;
+    top: 30px;
+    line-height: 1.7em;
+}
+
