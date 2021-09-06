@@ -20,7 +20,7 @@ const Renderer = ({ blocks }) => (
       return (
         <Component key={block.id}>
           {map(block.text, text => (
-            <Text text={text} />
+            <Text key={`${block.id}-${text.plain_text}`} text={text} />
           ))}
         </Component>
       )

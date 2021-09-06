@@ -4,11 +4,14 @@ import notion from "../features/shared/api/notionClient"
 
 function transformApiPostContent(content) {
   return map(content, block => {
-    const text = get(block, [block.type, "text", "0"], {})
+    const allText = get(block, [block.type, "text"], [])
     return {
       ...pick(block, ["id", "type"]),
-      ...(text.annotations || {}),
-      text: text.plain_text,
+      text: map(allText, text => ({
+        ...pick(text, ["plain_text"]),
+        ...text.annotations,
+        link: text.href,
+      })),
     }
   })
 }
@@ -21,7 +24,6 @@ export default async function handler(req, res) {
     ])
 
     post.content = transformApiPostContent(get(content, "results"))
-    post.raw_content = get(content, "results")
     return res.status(200).json(post)
   } catch (_) {
     return res.status(500).json()

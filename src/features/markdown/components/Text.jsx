@@ -15,7 +15,7 @@ const Text = ({ text }) => {
         (all, { C, props = {} }) => (
           <C {...props}>{all}</C>
         ),
-        text.text
+        text.plain_text
       )}
     </>
   )
