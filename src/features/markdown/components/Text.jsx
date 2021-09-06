@@ -1,10 +1,24 @@
-import { compact, reduce } from 'lodash';
-import React from 'react';
+import { compact, reduce } from "lodash"
+import React from "react"
 
 const Text = ({ text }) => {
-	const components = compact([text.bold && 'strong', text.italic && 'i']);
+  const components = compact([
+    text.link && { C: "a", props: { href: text.link } },
+    text.bold && { C: "strong" },
+    text.italic && { C: "i" },
+  ])
 
-	return <>{reduce(components, (all, C) => <C>{all}</C>, text.text)}</>;
-};
+  return (
+    <>
+      {reduce(
+        components,
+        (all, { C, props = {} }) => (
+          <C {...props}>{all}</C>
+        ),
+        text.text
+      )}
+    </>
+  )
+}
 
-export default Text;
+export default Text
