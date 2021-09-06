@@ -15,5 +15,12 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-gatsby-cloud",
+    {
+      resolve: "gatsby-plugin-google-fonts",
+      options: {
+        fonts: ["Open Sans", "Alegreya", "Playfair Display", "Lora"],
+        display: "swap",
+      },
+    },
   ],
 }

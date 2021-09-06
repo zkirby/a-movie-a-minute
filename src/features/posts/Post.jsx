@@ -12,10 +12,12 @@ const Post = ({ postId }) => {
   const [post, status] = useAsyncLoadState(() => getPost(postId))
 
   return (
-    <div>
-      <NavLink to="/">Home</NavLink>
-      <Loading status={status}>
-        <div className="post-body">
+    <div className="post">
+      <NavLink className="home" to="/">
+        Home
+      </NavLink>
+      <Loading className="loading" status={status}>
+        <div className="body">
           <h1>{`${post?.title} (${post?.year})`}</h1>
           <Renderer blocks={post?.content} />
         </div>

@@ -41,11 +41,24 @@
 }
 
 // -------
-// Posts
-.post-body {
-    margin: 0 auto;
-    width: 55vw;
-    top: 30px;
-    line-height: 1.7em;
+.post {
+    .home {
+        position: fixed;
+    }
+    
+    .loading {
+        margin: 0 auto;
+    }
+    
+    .body {
+        margin: 0 auto;
+        width: 55vw;
+        top: 30px;
+        line-height: 1.7em;
+        font-family: "Open Sans";
+    
+        h1,h2,h3 {
+            font-family: "Playfair Display";
+        }
+    }
 }
-
