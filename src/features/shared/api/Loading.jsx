@@ -1,17 +1,13 @@
-import React from 'react';
+import React from "react"
 
-import './api.scss';
+import "./api.scss"
 
-const Loading = ({
-	status,
-	children,
-	className = '',
-}) => {
-	if (status.loading) {
-		return <div className={`loader ${className}`} />;
-	}
+const Loading = ({ status, children, className = "" }) => {
+  if (status.loading) {
+    return <div className={`loader ${className}`} />
+  }
 
-	return children;
-};
+  return children
+}
 
-export default Loading;
+export default Loading
