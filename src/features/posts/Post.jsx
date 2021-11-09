@@ -1,9 +1,10 @@
 import React from "react"
 import Renderer from "../markdown/Renderer"
 
-import Loading from "../shared/api/Loading"
+import SkeletonLoading from "../shared/api/SkeletonLoading"
 import useAsyncLoadState from "../shared/api/useAsyncLoadState"
 import NavLink from "../shared/NavLink"
+import SkeletonPost from "./skeletons/SkeletonPost"
 import { getPost } from "./posts.api"
 
 import "./posts.scss"
@@ -16,12 +17,12 @@ const Post = ({ postId }) => {
       <NavLink className="home" to="/">
         Home
       </NavLink>
-      <Loading className="loading" status={status}>
+      <SkeletonLoading status={status} skeleton={<SkeletonPost />}>
         <div className="body">
           <h1>{`${post?.title} (${post?.year})`}</h1>
           <Renderer blocks={post?.content} />
         </div>
-      </Loading>
+      </SkeletonLoading>
     </div>
   )
 }

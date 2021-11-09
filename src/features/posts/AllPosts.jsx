@@ -2,9 +2,10 @@ import React from "react"
 import { map } from "lodash"
 
 import useAsyncLoadState from "../shared/api/useAsyncLoadState"
-import Loading from "../shared/api/Loading"
+import SkeletonLoading from "../shared/api/SkeletonLoading"
 import { getAllPostSummaries } from "./posts.api"
 import PostSummary from "./PostSummary"
+import SkeletonSummary from "./skeletons/SkeletonSummary"
 
 import "./posts.scss"
 
@@ -12,13 +13,13 @@ const AllPosts = () => {
   const [summaries, status] = useAsyncLoadState(getAllPostSummaries, [])
 
   return (
-    <Loading status={status}>
-      <div className="all-posts">
+    <div className="all-posts">
+      <SkeletonLoading status={status} skeleton={<SkeletonSummary />}>
         {map(summaries, post => (
           <PostSummary key={post.id} post={post} />
         ))}
-      </div>
-    </Loading>
+      </SkeletonLoading>
+    </div>
   )
 }
 

@@ -5,10 +5,10 @@
 .post-summary {
     height: 320px;
     width: 158px;
-    color: black;
-    border: 1px solid black;
     margin-right: 4rem;
     margin-bottom: 1rem;
+    color: black;
+    border: 1px solid black;
 
     .image {
         min-height: 250px;
@@ -64,4 +64,10 @@
             font-family: "Playfair Display";
         }
     }
+}
+
+// -----
+.skeleton-summary {
+    margin-right: 4rem;
+    margin-bottom: 1rem;
 }

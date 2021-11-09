@@ -15,5 +15,6 @@ module.exports = {
   rules: {
     "object-curly-spacing": ["error", "always"],
     "prettier/prettier": "error",
+    "capitalized-comments": ["error", "never"],
   },
 }
