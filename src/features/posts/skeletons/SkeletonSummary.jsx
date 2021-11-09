@@ -7,7 +7,7 @@ const SkeletonSummary = ({ count = 15 }) => (
       .fill()
       .map((_, i) => (
         <ContentLoader
-          class="skeleton-summary"
+          className="skeleton-summary"
           height={322}
           width={160}
           speed={2}

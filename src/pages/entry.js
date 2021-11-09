@@ -8,7 +8,7 @@ const Entry = () => {
   const [postId] = useQueryParam("postId", StringParam)
 
   return (
-    <PageWrapper>
+    <PageWrapper pageName={postId}>
       <Post postId={postId}></Post>
     </PageWrapper>
   )
