@@ -5,7 +5,7 @@ import "../assets/styles/index.scss"
 import PageWrapper from "../features/shared/PageWrapper"
 
 import ReactGA from "react-ga"
-ReactGA.initialize("G-J01RN2WTGK", { debug: true })
+ReactGA.initialize("UA-212256338-2", { debug: true })
 
 const IndexPage = () => (
   <PageWrapper className="home" pageName={"All posts"}>
