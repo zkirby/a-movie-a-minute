@@ -6,6 +6,7 @@ import SkeletonLoading from "../shared/api/SkeletonLoading"
 import { getAllPostSummaries } from "./posts.api"
 import PostSummary from "./PostSummary"
 import SkeletonSummary from "./skeletons/SkeletonSummary"
+import SignupForm from "../shared/SignupForm"
 
 import "./posts.scss"
 
@@ -19,6 +20,7 @@ const AllPosts = () => {
           <PostSummary key={post.id} post={post} />
         ))}
       </SkeletonLoading>
+      <SignupForm />
     </div>
   )
 }

@@ -11,7 +11,6 @@ import "./posts.scss"
 
 const Post = ({ postId }) => {
   const [post, status] = useAsyncLoadState(() => getPost(postId))
-  console.log(post, status)
 
   return (
     <div className="post">
