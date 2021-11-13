@@ -1,9 +1,20 @@
 import React from "react"
 
+import "./api.scss"
+
 // eventually this will be more complex, for now it's just
 // returning either the skeleton or the children
 const SkeletonLoading = ({ status, children, skeleton }) => {
-  return status.loading ? skeleton : children
+  if (status.error) {
+    return (
+      <div className="error">
+        Sorry looks like something went wrong :(, try refreshing - error:{" "}
+        {status.error}
+      </div>
+    )
+  }
+
+  return status.loading || !status.isLoaded ? skeleton : children
 }
 
 export default SkeletonLoading
